@@ -1,6 +1,6 @@
 package ch.juventus.se.carrental.business;
 
-public class AbstractVehicle implements Vehicle {
+public class AbstractVehicle {
     protected int id;
     protected String brand;
     protected String model;
