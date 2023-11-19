@@ -1,15 +1,77 @@
 package ch.juventus.se.carrental.business;
 
-public class Car extends AbstractVehicle{
+public class Car{
+    protected int id;
+    protected String brand;
+    protected String model;
     protected int doors;
     protected int seats;
     protected String transmission;
     protected String chassis;
+    protected double pricePerDay;
 
-    public Car(int doors, int seats, String transmission, String chassis) {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public int getDoors() {
+        return doors;
+    }
+
+    public void setDoors(int doors) {
         this.doors = doors;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
         this.seats = seats;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
         this.transmission = transmission;
+    }
+
+    public String getChassis() {
+        return chassis;
+    }
+
+    public void setChassis(String chassis) {
         this.chassis = chassis;
+    }
+
+        public double getPricePerDay() {
+        return pricePerDay;
+    }
+
+    public void setPricePerDay(double pricePerDay) {
+        this.pricePerDay = pricePerDay;
     }
 }
