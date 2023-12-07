@@ -18,6 +18,7 @@ public class CarController {
         return CarRepository.getInstance().getAllCars();
     }
 
+    @CrossOrigin("*")
     @GetMapping("/{id}")
     public Car getCarById(@PathVariable Integer id){
         return CarRepository.getInstance().getCar(id);

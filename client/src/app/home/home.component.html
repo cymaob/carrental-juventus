@@ -1,1 +1,31 @@
-<p>home works!</p>
+<div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Doors</th>
+      <th>Seats</th>
+      <th>Transmission</th>
+      <th>Chassis</th>
+      <th>Price per Day</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.id }}</td>
+      <td>{{ car.brand }}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.doors }}</td>
+      <td>{{ car.seats }}</td>
+      <td>{{ car.transmission }}</td>
+      <td>{{ car.chassis }}</td>
+      <td>{{ car.pricePerDay }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
