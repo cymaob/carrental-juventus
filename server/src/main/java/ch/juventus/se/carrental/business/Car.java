@@ -10,6 +10,11 @@ public class Car{
     protected String chassis;
     protected double pricePerDay;
 
+    public Car(int id, String brand, String model) {
+        this.id = id;
+        this.brand = brand;
+        this.model = model;
+    }
 
     public int getId() {
         return id;
