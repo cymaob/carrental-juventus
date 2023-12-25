@@ -10,10 +10,15 @@ public class Car{
     protected String chassis;
     protected double pricePerDay;
 
-    public Car(int id, String brand, String model) {
+    public Car(int id, String brand, String model, int doors, int seats, String transmission, String chassis, double pricePerDay) {
         this.id = id;
         this.brand = brand;
         this.model = model;
+        this.doors = doors;
+        this.seats = seats;
+        this.transmission = transmission;
+        this.chassis = chassis;
+        this.pricePerDay = pricePerDay;
     }
 
     public int getId() {
@@ -72,7 +77,7 @@ public class Car{
         this.chassis = chassis;
     }
 
-        public double getPricePerDay() {
+    public double getPricePerDay() {
         return pricePerDay;
     }
 
