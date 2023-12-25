@@ -8,7 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.rmi.ServerException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,24 +18,31 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/cars")
 public class CarController {
+    private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 
     @Autowired
     private CarService carService;
 
     @CrossOrigin("*")
-    @GetMapping("")
+    @GetMapping(path = "",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<Car> getAllCars(){
+        logger.debug("Get Request to return all cars");
         return CarRepository.getInstance().getAllCars();
     }
 
     @CrossOrigin("*")
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public Car getCarById(@PathVariable Integer id){
+        logger.debug("Get Request to return car by id: " + id);
         return CarRepository.getInstance().getCar(id);
     }
 
     @CrossOrigin("*")
-    @PostMapping(path="",
+    @PostMapping(path = "",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Car>> createCars(@RequestBody List<Car> newCars) throws ServerException {
@@ -47,14 +55,16 @@ public class CarController {
         }
 
         if (cars.isEmpty()) {
+            logger.error("Failed to create a car");
             throw new ServerException("Failed to create a car");
         } else {
+            logger.info("Created car");
             return new ResponseEntity<>(cars, HttpStatus.CREATED);
         }
     }
 
     @CrossOrigin("*")
-    @DeleteMapping(path="",
+    @DeleteMapping(path = "",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<Car>> deleteCar(@RequestBody List<Car> oldCars) throws ServerException {
@@ -67,8 +77,10 @@ public class CarController {
         }
 
         if (deletedCars.isEmpty()) {
+            logger.error("Failed to delete the car(s)");
             throw new ServerException("Failed to delete a car");
         } else {
+            logger.info("deleted cars with IDs: " + deletedCars);
             return new ResponseEntity<>(getAllCars(),HttpStatus.OK);
         }
 
