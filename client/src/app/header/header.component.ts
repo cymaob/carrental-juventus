@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -9,16 +7,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-}
+  constructor(private router: Router) {}
 
-/**
- * @title Basic toolbar
- */
-@Component({
-  selector: 'toolbar-basic-example',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
-  standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule],
-})
-export class ToolbarBasicExample {}
+  redirectToPage(page: string) {
+    this.router.navigate([page])
+  }
+}

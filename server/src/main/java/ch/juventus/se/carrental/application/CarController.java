@@ -2,7 +2,6 @@ package ch.juventus.se.carrental.application;
 
 import ch.juventus.se.carrental.business.Car;
 import ch.juventus.se.carrental.business.CarService;
-import ch.juventus.se.carrental.persistance.CarRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

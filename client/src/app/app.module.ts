@@ -13,13 +13,17 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from "@angular/common/http";
+import { ErrorComponent } from './error/error.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RentComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
