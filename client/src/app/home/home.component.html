@@ -1,4 +1,16 @@
-<div>
+<!--
+
+<br><div label="inputfields">
+  <mat-form-field class="input-field">
+    <mat-label >Chassis</mat-label>
+    <mat-select matNativeControl required>
+      <mat-option *ngFor="let car of cars" value="car.chassis">{{car.chassis}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+-->
+
+<div label="table">
   <table class="table-style" mat-table [dataSource]="cars">
 
     <ng-container matColumnDef="brand">

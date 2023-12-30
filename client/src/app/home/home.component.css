@@ -2,3 +2,11 @@
   background: antiquewhite;
   width: 100%;
 }
+th {
+  font-weight: bold;
+  background: rgba(85, 107, 47, 0.5) !important;
+}
+
+.input-field {
+  margin-left: 2%;
+}

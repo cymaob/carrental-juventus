@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit{
   cars: any;
-
   displayedColumns: string[] = ['brand', 'model', 'doors', 'seats', 'transmission', 'chassis', 'pricePerDay'];
   constructor(private http: HttpClient) { }
   ngOnInit(): void {
@@ -17,5 +16,4 @@ export class HomeComponent implements OnInit{
       this.cars = data;
     })
   }
-
 }
