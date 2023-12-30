@@ -1,29 +1,42 @@
 <div>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th>Brand</th>
-      <th>Model</th>
-      <th>Doors</th>
-      <th>Seats</th>
-      <th>Transmission</th>
-      <th>Chassis</th>
-      <th>Price per Day</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let car of cars">
-      <td>{{ car.brand }}</td>
-      <td>{{ car.model }}</td>
-      <td>{{ car.doors }}</td>
-      <td>{{ car.seats }}</td>
-      <td>{{ car.transmission }}</td>
-      <td>{{ car.chassis }}</td>
-      <td>{{ car.pricePerDay }}</td>
-    </tr>
-    </tbody>
+  <table class="table-style" mat-table [dataSource]="cars">
+
+    <ng-container matColumnDef="brand">
+      <th mat-header-cell *matHeaderCellDef> Brand </th>
+      <td mat-cell *matCellDef="let car"> {{car.brand}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="model">
+      <th mat-header-cell *matHeaderCellDef> Model </th>
+      <td mat-cell *matCellDef="let car"> {{car.model}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="doors">
+      <th mat-header-cell *matHeaderCellDef> Doors </th>
+      <td mat-cell *matCellDef="let car"> {{car.doors}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="seats">
+      <th mat-header-cell *matHeaderCellDef> Seats </th>
+      <td mat-cell *matCellDef="let car"> {{car.seats}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="transmission">
+      <th mat-header-cell *matHeaderCellDef> Transmission </th>
+      <td mat-cell *matCellDef="let car"> {{car.transmission}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="chassis">
+      <th mat-header-cell *matHeaderCellDef> Chassis </th>
+      <td mat-cell *matCellDef="let car"> {{car.chassis}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="pricePerDay">
+      <th mat-header-cell *matHeaderCellDef> Price per day </th>
+      <td mat-cell *matCellDef="let car"> {{car.pricePerDay}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
 </div>
-
-

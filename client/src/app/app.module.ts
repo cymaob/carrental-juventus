@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from "@angular/common/http";
 import { ErrorComponent } from './error/error.component';
 import { AdminComponent } from './admin/admin.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AdminComponent } from './admin/admin.component';
     MatIconModule,
     MatButtonModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
