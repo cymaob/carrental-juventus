@@ -3,7 +3,6 @@ package ch.juventus.se.carrental.application;
 import ch.juventus.se.carrental.business.Car;
 import ch.juventus.se.carrental.business.CarService;
 import ch.juventus.se.carrental.persistance.CarRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,25 +19,20 @@ import java.util.List;
 public class CarController {
     private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 
-    @Autowired
-    private CarService carService;
+    CarService carService = new CarService();
 
     @CrossOrigin("*")
-    @GetMapping(path = "",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "")
     public Collection<Car> getAllCars(){
         logger.debug("Get Request to return all cars");
-        return CarRepository.getInstance().getAllCars();
+        return carService.getAllCars();
     }
 
     @CrossOrigin("*")
-    @GetMapping(path = "/{id}",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/{id}")
     public Car getCarById(@PathVariable Integer id){
         logger.debug("Get Request to return car by id: " + id);
-        return CarRepository.getInstance().getCar(id);
+        return carService.getCar(id);
     }
 
     @CrossOrigin("*")
