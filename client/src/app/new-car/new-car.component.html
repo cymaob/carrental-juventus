@@ -1,0 +1,54 @@
+<br>
+<div>
+  <form  [formGroup]="form" (ngSubmit)="submitForm()">
+
+    <mat-form-field class="inputFields" hintLabel="Enter the brand name">
+      <mat-label>Brand</mat-label>
+      <input matInput required formControlName="brand">
+    </mat-form-field>
+
+    <mat-form-field class="inputFields" hintLabel="Enter the model">
+      <mat-label>Model</mat-label>
+      <input matInput required formControlName="model">
+    </mat-form-field>
+
+    <mat-form-field class="inputFields" hintLabel="Enter the number of doors">
+      <mat-label>Doors</mat-label>
+      <input matInput type="number" required formControlName="doors">
+    </mat-form-field>
+
+    <mat-form-field class="inputFields" hintLabel="Enter the number of seats">
+      <mat-label>Seats</mat-label>
+      <input matInput type="number" required formControlName="seats">
+    </mat-form-field>
+
+    <mat-form-field class="inputFields" hintLabel="Select the transmission type">
+      <mat-label>Transmission</mat-label>
+      <mat-select required formControlName="transmission">
+        <mat-option value="automatic">Automatic</mat-option>
+        <mat-option value="manual">Manual</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="inputFields" hintLabel="Select the chassis type">
+      <mat-label>Chassis</mat-label>
+      <mat-select required formControlName="chassis">
+        <mat-option value="hatchback">Hatchback</mat-option>
+        <mat-option value="SUV">SUV</mat-option>
+        <mat-option value="sports-car">Sports car</mat-option>
+        <mat-option value="sedan">Sedan</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="inputFields" hintLabel="Enter the price per day">
+      <mat-label>Price per day</mat-label>
+      <input matInput type="number" placeholder="00" required formControlName="pricePerDay">
+    </mat-form-field>
+
+    <br><br>
+    <div class="submitSpan">
+      <br>
+      <button mat-button type="submit" class="submitButton">Submit</button>
+    </div>
+  </form>
+</div>

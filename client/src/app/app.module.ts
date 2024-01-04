@@ -21,6 +21,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import { NewCarComponent } from './new-car/new-car.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
     HeaderComponent,
     HomeComponent,
     ErrorComponent,
-    AdminComponent
+    AdminComponent,
+    NewCarComponent
   ],
   imports: [
     BrowserModule,

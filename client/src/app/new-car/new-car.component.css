@@ -1,0 +1,17 @@
+.inputFields{
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.submitButton{
+  background: darkolivegreen;
+  color: wheat;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.submitSpan{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
