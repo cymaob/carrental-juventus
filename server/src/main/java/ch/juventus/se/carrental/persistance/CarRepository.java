@@ -17,13 +17,13 @@ public class CarRepository {
     }
 
     private CarRepository(){
-        carMap.put(1, new Car(1, "Seat", "Leon", 4, 4, "Automatic", "Hatchback", 170.0));
-        carMap.put(2, new Car(2, "VW", "Golf", 4, 4, "Manual", "Hatchback", 150.0));
-        carMap.put(3, new Car(3, "Volvo", "XC40", 5, 5, "Automatic", "SUV", 200.0));
-        carMap.put(4, new Car(4, "Audi", "RS8", 3, 2, "Automatic", "Sports car", 199.0));
-        carMap.put(5, new Car(5, "Toyota", "Camry", 4, 4, "Automatic", "Sedan", 150.0));
-        carMap.put(6, new Car(6, "Ford", "Mustang", 2, 2, "Manual", "Sports car", 250.0));
-        carMap.put(7, new Car(7, "Honda", "Civic", 4, 4, "Automatic", "Sedan", 130.0));
+        carMap.put(1, new Car("Seat", "Leon", 4, 4, "Automatic", "Hatchback", 170.0));
+        carMap.put(2, new Car("VW", "Golf", 4, 4, "Manual", "Hatchback", 150.0));
+        carMap.put(3, new Car("Volvo", "XC40", 5, 5, "Automatic", "SUV", 200.0));
+        carMap.put(4, new Car("Audi", "RS8", 3, 2, "Automatic", "Sports car", 199.0));
+        carMap.put(5, new Car("Toyota", "Camry", 4, 4, "Automatic", "Sedan", 150.0));
+        carMap.put(6, new Car( "Ford", "Mustang", 2, 2, "Manual", "Sports car", 250.0));
+        carMap.put(7, new Car("Honda", "Civic", 4, 4, "Automatic", "Sedan", 130.0));
     }
 
     public Car getCar(Integer id){

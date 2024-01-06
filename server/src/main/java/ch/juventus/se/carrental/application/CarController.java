@@ -2,6 +2,7 @@ package ch.juventus.se.carrental.application;
 
 import ch.juventus.se.carrental.business.Car;
 import ch.juventus.se.carrental.business.CarService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,8 @@ import java.util.List;
 public class CarController {
     private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 
-    CarService carService = new CarService();
-
+    @Autowired
+            private CarService carService;
     @CrossOrigin("*")
     @GetMapping(path = "")
     public Collection<Car> getAllCars(){
@@ -41,7 +42,7 @@ public class CarController {
     public ResponseEntity<List<Car>> createCars(@RequestBody List<Car> newCars) throws ServerException {
         List<Car> cars = new ArrayList<>();
         for (Car newCar : newCars) {
-            Car car = carService.createCar(newCar);
+            Car car = carService.saveCar(newCar);
             if (car != null) {
                 cars.add(car);
             }
@@ -51,10 +52,21 @@ public class CarController {
             logger.error("Failed to create a car");
             throw new ServerException("Failed to create a car");
         } else {
-            logger.info("Created car");
+            logger.info("Created car(s)");
             return new ResponseEntity<>(cars, HttpStatus.CREATED);
         }
     }
+
+    @CrossOrigin("*")
+    @DeleteMapping(path = "/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteCar(@PathVariable Integer id){
+        logger.debug("Delete Request to delete car with ID: " + id);
+        carService.deleteCar(id);
+    }
+
+/*
 
     @CrossOrigin("*")
     @DeleteMapping(path = "",
@@ -78,5 +90,6 @@ public class CarController {
         }
 
     }
+*/
 
 }

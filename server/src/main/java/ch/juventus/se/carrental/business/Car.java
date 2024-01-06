@@ -1,6 +1,14 @@
 package ch.juventus.se.carrental.business;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Car{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
     protected String brand;
     protected String model;
@@ -10,8 +18,7 @@ public class Car{
     protected String chassis;
     protected double pricePerDay;
 
-    public Car(int id, String brand, String model, int doors, int seats, String transmission, String chassis, double pricePerDay) {
-        this.id = id;
+    public Car(String brand, String model, int doors, int seats, String transmission, String chassis, double pricePerDay) {
         this.brand = brand;
         this.model = model;
         this.doors = doors;
@@ -19,6 +26,10 @@ public class Car{
         this.transmission = transmission;
         this.chassis = chassis;
         this.pricePerDay = pricePerDay;
+    }
+
+    public Car() {
+
     }
 
     public int getId() {

@@ -1,4 +1,4 @@
-package ch.juventus.se.carrental.application;
+package ch.juventus.se.carrental;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

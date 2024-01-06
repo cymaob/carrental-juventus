@@ -1,26 +1,33 @@
 package ch.juventus.se.carrental.business;
 
-import ch.juventus.se.carrental.persistance.CarRepository;
+import ch.juventus.se.carrental.persistance.CarRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.PublicKey;
 import java.util.Collection;
 
 @Service
 public class CarService {
-    public Car createCar(Car newCar){
-        return CarRepository.getInstance().putCar(newCar);
-    }
-
-    public Car deleteCar(Car oldCar) {
-        return CarRepository.getInstance().deleteCar(oldCar);
-    }
-
-    public Car getCar(int car) {
-        return CarRepository.getInstance().getCar(car);
+    private final CarRepo carRepo;
+    @Autowired
+    public CarService(CarRepo carRepo){
+        this.carRepo = carRepo;
     }
 
     public Collection<Car> getAllCars() {
-        return CarRepository.getInstance().getAllCars();
+        return carRepo.findAll();
     }
+
+    public Car getCar(int id){
+        return carRepo.getReferenceById(id);
+    }
+
+    public Car saveCar(Car car){
+        return carRepo.save(car);
+    }
+
+    public void deleteCar(int id){
+        carRepo.deleteById(id);
+    }
+
 }
