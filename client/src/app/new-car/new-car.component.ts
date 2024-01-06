@@ -1,6 +1,6 @@
-import {Component, NgModule} from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
@@ -10,23 +10,33 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class NewCarComponent {
   form = this.formBuilder.group({
-    brand: '',
-    model: '',
-    doors: '',
-    seats: '',
-    transmission: '',
-    chassis: '',
-    pricePerDay: '',
+    brand: ['', Validators.required],
+    model: ['', Validators.required],
+    doors: ['', Validators.required],
+    seats: ['', Validators.required],
+    transmission: ['', Validators.required],
+    chassis: ['', Validators.required],
+    pricePerDay: ['', Validators.required],
   });
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private _snackBar: MatSnackBar) {}
+
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private _snackBar: MatSnackBar) {
+  }
 
   submitForm(): void {
-    const data = "[" + JSON.stringify(this.form.value) + "]";
-    console.log(data)
-    this.http.post('http://localhost:8080/api/v1/cars', data, { headers: { 'Content-Type': 'application/json' } }).subscribe(response => {
-      console.log(response);
-    });
-    this._snackBar.open(`Created ${this.form.value.brand} ${this.form.value.model}`, 'Close', { duration: 5000 });
+    if (this.form.valid) {
+      const data = "[" + JSON.stringify(this.form.value) + "]";
+      this.http.post('http://localhost:8080/api/v1/cars', data, {headers: {'Content-Type': 'application/json'}}).subscribe((response: any) => {
+        if (response.status === 200) {
+          this._snackBar.open(`Created ${this.form.value.brand} ${this.form.value.model}`, 'Close', {duration: 5000});
+          console.log("Sending data to backend")
+        } else {
+          this._snackBar.open(`Failed to create ${this.form.value.brand} ${this.form.value.model}. Please check your input`, 'Close', {duration: 5000});
+          console.log("Failed to create car. Server error")
+        }
+      });
+    } else {
+      this._snackBar.open(`Form is invalid. Please check your input!`, 'Close', {duration: 5000});
+    }
   }
 
 
