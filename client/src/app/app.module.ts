@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import { NewCarComponent } from './new-car/new-car.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { EditCarComponent } from './edit-car/edit-car.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     HomeComponent,
     ErrorComponent,
     AdminComponent,
-    NewCarComponent
+    NewCarComponent,
+    EditCarComponent
   ],
   imports: [
     BrowserModule,

@@ -61,9 +61,10 @@ public class CarController {
     @DeleteMapping(path = "/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteCar(@PathVariable Integer id){
+    public String deleteCar(@PathVariable Integer id){
         logger.debug("Delete Request to delete car with ID: " + id);
         carService.deleteCar(id);
+        return("[]");
     }
 
 /*

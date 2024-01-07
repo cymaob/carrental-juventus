@@ -13,6 +13,14 @@
 <div label="table">
   <table class="table-style" mat-table [dataSource]="cars">
 
+    <ng-container matColumnDef="rent">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let car">
+        <button mat-button (click)="redirectToPage(car)" class="button">Rent</button>
+      </td>
+    </ng-container>
+
+
     <ng-container matColumnDef="brand">
       <th mat-header-cell *matHeaderCellDef> Brand </th>
       <td mat-cell *matCellDef="let car"> {{car.brand}} </td>

@@ -2,8 +2,15 @@ mat-grid-tile {
   background: lightblue;
 }
 
-.adminButtons {
+.button {
   background: darkolivegreen;
+  color: wheat;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.deleteButton {
+  background: darkred;
   color: wheat;
   margin-right: 2%;
   margin-left: 2%;
