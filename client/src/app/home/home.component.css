@@ -7,13 +7,22 @@ th {
   background: rgba(85, 107, 47, 0.5) !important;
 }
 
-.input-field {
+.inputFields{
+  margin-right: 2%;
   margin-left: 2%;
+  margin-top: 2%;
 }
 
-.button {
+.greenButton {
   background: darkolivegreen;
   color: wheat;
   margin-right: 2%;
   margin-left: 2%;
+}
+
+.datePicker{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(85, 107, 47, 0.5)
 }

@@ -1,10 +1,11 @@
 package ch.juventus.se.carrental.business;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 public class Car{
     @Id

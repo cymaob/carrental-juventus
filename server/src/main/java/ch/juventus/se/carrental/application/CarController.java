@@ -13,7 +13,7 @@ import java.rmi.ServerException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/cars")
 public class CarController {
@@ -21,21 +21,19 @@ public class CarController {
 
     @Autowired
             private CarService carService;
-    @CrossOrigin("*")
+
     @GetMapping(path = "")
     public Collection<Car> getAllCars(){
         logger.debug("Get Request to return all cars");
         return carService.getAllCars();
     }
 
-    @CrossOrigin("*")
     @GetMapping(path = "/{id}")
     public Car getCarById(@PathVariable Integer id){
         logger.debug("Get Request to return car by id: " + id);
         return carService.getCar(id);
     }
 
-    @CrossOrigin("*")
     @PostMapping(path = "",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -47,7 +45,6 @@ public class CarController {
                 cars.add(car);
             }
         }
-
         if (cars.isEmpty()) {
             logger.error("Failed to create a car");
             throw new ServerException("Failed to create a car");
@@ -57,7 +54,14 @@ public class CarController {
         }
     }
 
-    @CrossOrigin("*")
+    @PostMapping(path = "/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Car updateCar(@RequestBody Car car, @PathVariable Integer id) throws ServerException{
+        Car newCar = carService.updateCar(car);
+        return newCar;
+    }
+
     @DeleteMapping(path = "/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -66,31 +70,5 @@ public class CarController {
         carService.deleteCar(id);
         return("[]");
     }
-
-/*
-
-    @CrossOrigin("*")
-    @DeleteMapping(path = "",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Collection<Car>> deleteCar(@RequestBody List<Car> oldCars) throws ServerException {
-        List<Car> deletedCars = new ArrayList<>();
-        for (Car oldCar : oldCars) {
-            Car car = carService.deleteCar(oldCar);
-            if (car != null) {
-                deletedCars.add(car);
-            }
-        }
-
-        if (deletedCars.isEmpty()) {
-            logger.error("Failed to delete the car(s)");
-            throw new ServerException("Failed to delete a car");
-        } else {
-            logger.info("deleted cars with IDs: " + deletedCars);
-            return new ResponseEntity<>(getAllCars(),HttpStatus.OK);
-        }
-
-    }
-*/
 
 }

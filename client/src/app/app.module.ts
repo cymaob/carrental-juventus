@@ -24,6 +24,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import { NewCarComponent } from './new-car/new-car.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { EditCarComponent } from './edit-car/edit-car.component';
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { EditCarComponent } from './edit-car/edit-car.component';
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatSnackBarModule
   ],
   providers: [],
