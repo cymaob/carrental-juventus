@@ -1,4 +1,26 @@
-<p>Brand: {{car.brand}}</p>
-<p>Model: {{car.model}}</p>
-<p>Start date: {{startDate}}</p>
-<p>End date: {{endDate}}</p>
+
+
+<div *ngIf="!isConfirmed">
+  <mat-card class="matCard">
+    <mat-card-content class="matCardContent">
+      <h1>Please confirm the following rental:</h1>
+      <mat-divider></mat-divider><br>
+      <p><mat-icon> directions_car</mat-icon> {{car.brand}} {{car.model}}</p>
+      <p><mat-icon>date_range</mat-icon>Start date: {{startDate}}</p>
+      <p><mat-icon>date_range</mat-icon>End date: {{endDate}}</p>
+      <div class="buttonDiv">
+        <button class="greenButton" mat-button (click)="rentCar()">Confirm</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+
+</div>
+
+<div *ngIf="isConfirmed">
+  <mat-card class="matCard">
+    <mat-card-content class="matCardContent">
+      Thank you for your confirmation!
+    </mat-card-content>
+  </mat-card>
+</div>

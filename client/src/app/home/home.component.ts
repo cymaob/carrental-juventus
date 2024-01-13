@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit{
     if (this.dateRange.value.start && this.dateRange.value.end != null){
       this.router.navigate(['/rent'], { state: { data: car, date: this.dateRange.value} });
     } else {
-      this._snackBar.open(`Please provide the desired dates first`, 'Close', {duration: 8000});
+      this._snackBar.open(`Please provide the desired dates before renting a car`, 'Close', {duration: 8000});
     }
   }
 

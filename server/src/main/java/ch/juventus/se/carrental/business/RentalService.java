@@ -1,6 +1,7 @@
 package ch.juventus.se.carrental.business;
 
 import ch.juventus.se.carrental.persistance.RentalRepo;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class RentalService {
         return rentalRepo.getReferenceById(id);
     }
 
+    @Transactional
     public Rental newRental(@PathVariable Rental rental){
         return rentalRepo.save(rental);
     }

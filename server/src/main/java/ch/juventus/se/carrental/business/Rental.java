@@ -2,19 +2,17 @@ package ch.juventus.se.carrental.business;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 public class Rental {
-    @jakarta.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "car_id")
     private Car car;
 
@@ -27,5 +25,25 @@ public class Rental {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public LocalDate getRentStartDate() {
+        return rentStartDate;
+    }
+
+    public void setRentStartDate(LocalDate rentStartDate) {
+        this.rentStartDate = rentStartDate;
+    }
+
+    public LocalDate getRentEndDate() {
+        return rentEndDate;
+    }
+
+    public void setRentEndDate(LocalDate rentEndDate) {
+        this.rentEndDate = rentEndDate;
+    }
+
+    public Car getCar(){
+        return this.car;
     }
 }

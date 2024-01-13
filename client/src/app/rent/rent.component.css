@@ -1,3 +1,28 @@
-.mat-grid-tile {
-  background: lightblue;
+.greenButton {
+  background: darkolivegreen;
+  color: wheat;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.matCard {
+  background: linen;
+  color: darkolivegreen;
+  margin-right: 2%;
+  margin-left: 2%;
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.matCardContent {
+  font-size: large;
+}
+
+.buttonDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

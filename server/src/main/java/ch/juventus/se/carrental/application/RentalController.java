@@ -19,17 +19,17 @@ public class RentalController {
     private RentalService rentalService;
 
     @GetMapping(path = "")
-    public Collection<Rental> getAllRentals(){
+    public Collection<Rental> getAllRentals() {
         return rentalService.getAllRentals();
     }
 
     @GetMapping(path = "/{id}")
-    public Rental getRentalById(@PathVariable Integer id){
+    public Rental getRentalById(@PathVariable Integer id) {
         return rentalService.getRentalById(id);
     }
 
     @PostMapping(path = "")
-    public Rental newRental(@RequestBody Rental rental){
+    public Rental newRental(@RequestBody Rental rental) {
         return rentalService.newRental(rental);
     }
 }

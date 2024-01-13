@@ -25,6 +25,8 @@ import { NewCarComponent } from './new-car/new-car.component';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { EditCarComponent } from './edit-car/edit-car.component';
 import {MatNativeDateModule} from "@angular/material/core";
+import {MatCardModule} from "@angular/material/card";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import {MatNativeDateModule} from "@angular/material/core";
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
