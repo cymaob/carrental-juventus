@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router} from "@angular/router";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
@@ -14,6 +14,12 @@ export class HomeComponent implements OnInit{
   displayedColumns: string[] = ['brand', 'model', 'doors', 'seats', 'transmission', 'chassis', 'pricePerDay', 'rent'];
 
 
+  dateRange = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
+
+
   form = this.formBuilder.group({
     brand: [''],
     model: [''],
@@ -24,9 +30,6 @@ export class HomeComponent implements OnInit{
     pricePerDay: [''],
   });
 
-  dateForm = this.formBuilder.group({
-
-  })
 
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
   }
@@ -41,10 +44,16 @@ export class HomeComponent implements OnInit{
 
 
   redirectToPage(car: Object) {
-    this.router.navigate(['/rent'], { state: { data: car } });
+    if (this.dateRange.value.start && this.dateRange.value.end != null){
+      this.router.navigate(['/rent'], { state: { data: car, date: this.dateRange.value} });
+    } else {
+      this._snackBar.open(`Please provide the desired dates first`, 'Close', {duration: 8000});
+    }
   }
 
 
   submitForm(): void {
+    console.log(this.dateRange.value)
+    console.log(typeof this.dateRange.value.end)
   }
 }

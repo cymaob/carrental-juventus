@@ -15,7 +15,7 @@ public class Rental {
     protected int id;
 
     @ManyToOne
-    @JoinColumn(name = "carId")
+    @JoinColumn(name = "car_id")
     private Car car;
 
     private LocalDate rentStartDate;

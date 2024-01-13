@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Collection;
 
@@ -20,5 +21,13 @@ public class RentalService {
 
     public Collection<Rental> getAllRentals(){
         return rentalRepo.findAll();
+    }
+
+    public Rental getRentalById(int id){
+        return rentalRepo.getReferenceById(id);
+    }
+
+    public Rental newRental(@PathVariable Rental rental){
+        return rentalRepo.save(rental);
     }
 }
