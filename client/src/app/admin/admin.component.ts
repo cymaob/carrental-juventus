@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-admin',
@@ -8,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private _snackBar: MatSnackBar) {}
   cars: any;
   displayedColumns: string[] = ['brand', 'model', 'doors', 'seats', 'transmission', 'chassis', 'pricePerDay', 'edit', 'delete'];
 
@@ -23,11 +24,11 @@ export class AdminComponent {
 
   deleteCar(id: string){
     console.log(id)
-    this.http.delete(`http://localhost:8080/api/v1/cars/${id}`, {headers: {'Content-Type': 'application/json'}}).subscribe((response: any) => {
-      if (response && response.status === 200) {
-        console.log("Deleted")
+    this.http.delete(`http://localhost:8080/api/v1/cars/${id}`, {observe: 'response', headers: {'Content-Type': 'application/json'}}).subscribe((response: any) => {
+      if (response.status === 200) {
+        this._snackBar.open(`Car with ID ${id} has been deleted. Refresh to see changes.`, 'Close', {duration: 8000});
       } else {
-        console.log("Failed to delete car. Server error")
+        this._snackBar.open(`Unable to delete Car with ID ${id}`, 'Close', {duration: 8000});
       }
     });
   }
