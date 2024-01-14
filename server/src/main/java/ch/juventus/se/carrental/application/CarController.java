@@ -27,7 +27,7 @@ public class CarController {
             private CarService carService;
 
     @Operation(
-            summary = "Get all Cars",
+            summary = "Get all cars",
             responses = {
                     @ApiResponse(
                             description = "Success",

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
 public class Rental {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
@@ -18,6 +19,15 @@ public class Rental {
 
     private LocalDate rentStartDate;
     private LocalDate rentEndDate;
+
+    public Rental(Car car, LocalDate rentStartDate, LocalDate rentEndDate) {
+        this.car = car;
+        this.rentStartDate = rentStartDate;
+        this.rentEndDate = rentEndDate;
+    }
+
+    public Rental() {
+    }
 
     public int getId() {
         return id;

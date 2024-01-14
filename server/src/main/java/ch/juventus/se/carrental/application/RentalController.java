@@ -24,7 +24,7 @@ public class RentalController {
     private RentalService rentalService;
 
     @Operation(
-            summary = "Get all Rentals",
+            summary = "Get all rentals",
             responses = {
                     @ApiResponse(
                             description = "Success",

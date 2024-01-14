@@ -1,7 +1,10 @@
 <mat-toolbar class="toolbar">
   <button mat-button (click)="redirectToPage('/')">FleetWise</button>
   <span class="spacer"></span>
-  <button mat-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" (click)="redirectToPage('/admin')">
+  <a mat-button href="http://localhost:8080/swagger-ui/index.html#/" target="_blank">
+    <mat-icon>notes</mat-icon>Swagger-UI
+  </a>
+  <button mat-button aria-label="Admin" (click)="redirectToPage('/admin')">
     <mat-icon>settings</mat-icon>Admin
   </button>
 </mat-toolbar>

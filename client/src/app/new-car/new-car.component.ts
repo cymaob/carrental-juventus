@@ -25,8 +25,8 @@ export class NewCarComponent {
   submitForm(): void {
     if (this.form.valid) {
       const data = "[" + JSON.stringify(this.form.value) + "]";
-      this.http.post('http://localhost:8080/api/v1/cars', data, {headers: {'Content-Type': 'application/json'}}).subscribe((response: any) => {
-        if (response.status === 200) {
+      this.http.post('http://localhost:8080/api/v1/cars', data, {observe: 'response', headers: {'Content-Type': 'application/json'}}).subscribe((response: any) => {
+        if (response.status === 201) {
           this._snackBar.open(`Created ${this.form.value.brand} ${this.form.value.model}`, 'Close', {duration: 5000});
           console.log("Sending data to backend")
         } else {
