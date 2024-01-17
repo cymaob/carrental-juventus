@@ -52,8 +52,17 @@ export class HomeComponent implements OnInit{
   }
 
 
-  submitForm(): void {
-    console.log(this.dateRange.value)
-    console.log(typeof this.dateRange.value.end)
+  submitDates(): void {
+    const startDate = this.dateRange.value.start ? this.dateRange.value.start.toISOString():'';
+    const endDate = this.dateRange.value.end ? this.dateRange.value.end.toISOString():'';
+    console.log(startDate, endDate)
+    this.http.get("http://localhost:8080/api/v1/cars", {
+      params: {
+        startDate: startDate,
+        endDate: endDate
+      }
+    }).subscribe(data => {
+        this.cars = data;
+    })
   }
 }
