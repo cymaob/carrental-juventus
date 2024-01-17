@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Service
@@ -28,7 +29,7 @@ public class CarService {
         return carRepo.findAll();
     }
 
-    public Collection<Car> getAvailableCars(LocalDate startDate, LocalDate endDate){
+    public Collection<Car> getAvailableCars(LocalDateTime startDate, LocalDateTime endDate){
         if (startDate.isBefore(endDate) || startDate.isEqual(endDate)) {
             return rentalRepo.findAvailableCars(startDate, endDate);
         } else {

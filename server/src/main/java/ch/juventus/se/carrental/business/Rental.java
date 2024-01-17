@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity
@@ -17,10 +18,10 @@ public class Rental {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    private LocalDate rentStartDate;
-    private LocalDate rentEndDate;
+    private LocalDateTime rentStartDate;
+    private LocalDateTime rentEndDate;
 
-    public Rental(Car car, LocalDate rentStartDate, LocalDate rentEndDate) {
+    public Rental(Car car, LocalDateTime rentStartDate, LocalDateTime rentEndDate) {
         this.car = car;
         this.rentStartDate = rentStartDate;
         this.rentEndDate = rentEndDate;
@@ -37,19 +38,19 @@ public class Rental {
         this.id = id;
     }
 
-    public LocalDate getRentStartDate() {
+    public LocalDateTime getRentStartDate() {
         return rentStartDate;
     }
 
-    public void setRentStartDate(LocalDate rentStartDate) {
+    public void setRentStartDate(LocalDateTime rentStartDate) {
         this.rentStartDate = rentStartDate;
     }
 
-    public LocalDate getRentEndDate() {
+    public LocalDateTime getRentEndDate() {
         return rentEndDate;
     }
 
-    public void setRentEndDate(LocalDate rentEndDate) {
+    public void setRentEndDate(LocalDateTime rentEndDate) {
         this.rentEndDate = rentEndDate;
     }
 
