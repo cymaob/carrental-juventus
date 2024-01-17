@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit{
     transmission: [''],
     chassis: [''],
     pricePerDay: [''],
+    minPrice: [''],
+    maxPrice: [''],
   });
 
 
