@@ -1,8 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router} from "@angular/router";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class HomeComponent implements OnInit{
   cars: any;
+  dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['brand', 'model', 'doors', 'seats', 'transmission', 'chassis', 'pricePerDay', 'rent'];
 
 
@@ -37,11 +39,21 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
     console.log("Get http://localhost:8080/api/v1/cars")
-    this.http.get("http://localhost:8080/api/v1/cars").subscribe(data => {
+    this.http.get("http://localhost:8080/api/v1/cars").subscribe(data  => {
       this.cars = data;
+      this.dataSource.data = this.cars;
+      this.dataSource.filterPredicate = (data: any, filter: string) => {
+        const brandMatches = data.brand.toLowerCase().includes(filter);
+        const modelMatches = data.model.toLowerCase().includes(filter);
+        return brandMatches || modelMatches;
+      };
     })
   }
 
+  applyBrandModelFilter(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
   redirectToPage(car: Object) {
     if (this.dateRange.value.start && this.dateRange.value.end != null){
