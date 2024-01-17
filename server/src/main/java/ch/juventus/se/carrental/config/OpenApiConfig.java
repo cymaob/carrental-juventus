@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         info = @Info(
                 title = "Fleetwise API Docomentation",
                 description = "CarRental system project for software engineering @ Juventus Schule Zürich",
-                version = "1.0"
+                version = "1.1"
 
         ),
         servers = {
