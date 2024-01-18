@@ -60,8 +60,7 @@ public class CarService {
         carToUpdate.transmission=car.transmission;
         carToUpdate.chassis=car.chassis;
         carToUpdate.pricePerDay=car.pricePerDay;
-        Car updatedCar = carRepo.save(carToUpdate);
-        return updatedCar;
+        return carRepo.save(carToUpdate);
     }
 
     public void deleteCar(int id){

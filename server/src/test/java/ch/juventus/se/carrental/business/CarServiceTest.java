@@ -2,10 +2,8 @@ package ch.juventus.se.carrental.business;
 
 import ch.juventus.se.carrental.persistance.CarRepo;
 import ch.juventus.se.carrental.persistance.RentalRepo;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 
@@ -28,9 +26,9 @@ class CarServiceTest {
 
     @BeforeEach
     void saveSomeCars(){
-        Car car1 = new Car("Seat", "Leon Cupra", 5, 5, "Automatic", "Hatchback", 200);
-        Car car2 = new Car("BMW", "3 Series", 5, 5, "Manual", "Sedan", 50.0);
-        Car car3 = new Car("Volvo", "XC40", 5, 5, "Automatic", "SUV", 100.0);
+        this.car1 = new Car("Seat", "Leon Cupra", 5, 5, "Automatic", "Hatchback", 200);
+        this.car2 = new Car("BMW", "3 Series", 5, 5, "Manual", "Sedan", 50.0);
+        this.car3 = new Car("Volvo", "XC40", 5, 5, "Automatic", "SUV", 100.0);
 
         carRepo.save(car1);
         carRepo.save(car2);

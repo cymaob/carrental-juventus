@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.rmi.ServerException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -125,7 +124,7 @@ public class CarController {
     @PutMapping(path = "/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Car updateCar(@RequestBody Car car, @PathVariable Integer id) throws ServerException{
+    public Car updateCar(@RequestBody Car car){
         logger.info("Put request to update a car");
         return carService.updateCar(car);
     }
