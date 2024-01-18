@@ -4,7 +4,6 @@ import ch.juventus.se.carrental.application.CarController;
 import ch.juventus.se.carrental.exceptions.InvalidDateRangeException;
 import ch.juventus.se.carrental.persistance.CarRepo;
 import ch.juventus.se.carrental.persistance.RentalRepo;
-import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +30,10 @@ public class CarService {
 
     public Collection<Car> getAvailableCars(LocalDateTime startDate, LocalDateTime endDate){
         if (startDate.isBefore(endDate) || startDate.isEqual(endDate)) {
+            logger.info("Checking rentals for available cars between " + startDate + " and " + endDate);
             return rentalRepo.findAvailableCars(startDate, endDate);
         } else {
-            logger.warn("End date of request was before start date");
+            logger.error("End date of request was before start date");
             throw new InvalidDateRangeException("Start date has to be before end date");
         }
     }
@@ -49,10 +49,10 @@ public class CarService {
     public Car updateCar(Car car){
         Optional<Car> optionalCar = carRepo.findById(car.id);
         if (optionalCar.isEmpty()) {
+            logger.error("could not find the car with ID: " + car.id);
             return null;
         }
         Car carToUpdate = optionalCar.get();
-        logger.info(carToUpdate.transmission);
         carToUpdate.brand=car.brand;
         carToUpdate.model=car.model;
         carToUpdate.doors=car.doors;
@@ -60,7 +60,6 @@ public class CarService {
         carToUpdate.transmission=car.transmission;
         carToUpdate.chassis=car.chassis;
         carToUpdate.pricePerDay=car.pricePerDay;
-        logger.info(carToUpdate.model + carToUpdate.transmission);
         Car updatedCar = carRepo.save(carToUpdate);
         return updatedCar;
     }

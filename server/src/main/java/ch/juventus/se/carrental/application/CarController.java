@@ -28,7 +28,7 @@ public class CarController {
     private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 
     @Autowired
-            private CarService carService;
+    private CarService carService;
 
     @Operation(
             summary = "Get all cars",
@@ -48,12 +48,15 @@ public class CarController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<Car> getAvailableCars(@RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
                                             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate){
-        logger.debug("Get Request to return all cars");
+        logger.info("Get Request to return all cars initiated");
         if (startDate == null && endDate ==null) {
+            logger.info("Get request is for all cars");
             return carService.getAllCars();
         } else if (startDate == null || endDate == null) {
+            logger.error("Invalid params provided for get request");
             throw new InvalidDateParamException("");
         } else {
+            logger.info("Get request is for available cars with start date " + startDate + " and end date " + endDate);
             return carService.getAvailableCars(startDate, endDate);
         }
 
@@ -71,7 +74,7 @@ public class CarController {
     @GetMapping(path = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Car getCarById(@PathVariable Integer id){
-        logger.debug("Get Request to return car by id: " + id);
+        logger.info("Get Request to return car by id: " + id);
         return carService.getCar(id);
     }
 
@@ -92,6 +95,7 @@ public class CarController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Car>> createCars(@RequestBody List<Car> newCars) throws ServerException {
+        logger.info("Post for a new car");
         List<Car> cars = new ArrayList<>();
         for (Car newCar : newCars) {
             Car car = carService.saveCar(newCar);
@@ -100,10 +104,10 @@ public class CarController {
             }
         }
         if (cars.isEmpty()) {
-            logger.error("Failed to create a car");
+            logger.error("Failed to create one or multiple cars");
             throw new ServerException("Failed to create a car");
         } else {
-            logger.info("Created car(s)");
+            logger.info("Created " + cars.size() + " car(s)");
             return new ResponseEntity<>(cars, HttpStatus.CREATED);
         }
     }
@@ -122,6 +126,7 @@ public class CarController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Car updateCar(@RequestBody Car car, @PathVariable Integer id) throws ServerException{
+        logger.info("Put request to update a car");
         return carService.updateCar(car);
     }
 
@@ -138,7 +143,7 @@ public class CarController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public String deleteCar(@PathVariable Integer id){
-        logger.debug("Delete Request to delete car with ID: " + id);
+        logger.info("Delete Request to delete car with ID: " + id);
         carService.deleteCar(id);
         return("[]");
     }

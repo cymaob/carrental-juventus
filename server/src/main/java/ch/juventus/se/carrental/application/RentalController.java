@@ -35,6 +35,7 @@ public class RentalController {
     @GetMapping(path = "",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<Rental> getAllRentals() {
+        logger.info("Get request to get all rentals");
         return rentalService.getAllRentals();
     }
 
@@ -50,6 +51,7 @@ public class RentalController {
     @GetMapping(path = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Rental getRentalById(@PathVariable Integer id) {
+        logger.info("Get request to get rental with ID: " + id);
         return rentalService.getRentalById(id);
     }
 
@@ -66,6 +68,7 @@ public class RentalController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Rental newRental(@RequestBody Rental rental) {
+        logger.info("Post request for a new rental");
         return rentalService.newRental(rental);
     }
 }

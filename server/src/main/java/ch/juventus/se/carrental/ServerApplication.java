@@ -12,7 +12,7 @@ public class ServerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ServerApplication.class, args);
-        logger.info("Application started");
+        logger.info("Application started!");
 
     }
 
