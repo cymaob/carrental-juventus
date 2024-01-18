@@ -1,10 +1,11 @@
 <div label="search bar">
   <form [formGroup]="form" (ngSubmit)="submitDates()">
     <div class="searchBar">
+
       <mat-form-field class="inputFields">
         <mat-label>Select the dates</mat-label>
-        <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange">
-          <input matStartDate placeholder="Start date" formControlName="start">
+        <mat-date-range-input [rangePicker]="picker" [formGroup]="dateRange" [min]="minDate">
+          <input matStartDate placeholder="Start date" formControlName="start" (dateChange)="onStartDateChange($event)">
           <input matEndDate placeholder="End date" formControlName="end">
         </mat-date-range-input>
         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
@@ -24,6 +25,17 @@
   <mat-form-field class="inputFields">
     <mat-label>Brand/model</mat-label>
     <input matInput (keyup)="applyBrandModelFilter($event)">
+  </mat-form-field>
+  <mat-form-field class="inputFields" hintLabel="Select the chassis type">
+    <mat-label>Chassis</mat-label>
+    <mat-select>
+      <mat-option value="Hatchback">Hatchback</mat-option>
+      <mat-option value="SUV">SUV</mat-option>
+      <mat-option value="Sports car">Sports car</mat-option>
+      <mat-option value="Sedan">Sedan</mat-option>
+      <mat-option value="Coupe">Coupe</mat-option>
+      <mat-option value="Convertible">Convertible</mat-option>
+    </mat-select>
   </mat-form-field>
 </div>
 

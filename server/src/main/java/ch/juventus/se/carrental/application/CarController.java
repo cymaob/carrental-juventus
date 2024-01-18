@@ -118,12 +118,11 @@ public class CarController {
                     )
             }
     )
-    @PostMapping(path = "/{id}",
+    @PutMapping(path = "/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Car updateCar(@RequestBody Car car, @PathVariable Integer id) throws ServerException{
-        Car newCar = carService.updateCar(car);
-        return newCar;
+        return carService.updateCar(car);
     }
 
     @Operation(

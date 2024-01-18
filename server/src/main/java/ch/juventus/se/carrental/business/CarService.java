@@ -4,14 +4,14 @@ import ch.juventus.se.carrental.application.CarController;
 import ch.juventus.se.carrental.exceptions.InvalidDateRangeException;
 import ch.juventus.se.carrental.persistance.CarRepo;
 import ch.juventus.se.carrental.persistance.RentalRepo;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class CarService {
@@ -47,7 +47,12 @@ public class CarService {
     }
 
     public Car updateCar(Car car){
-        Car carToUpdate = carRepo.getReferenceById(car.id);
+        Optional<Car> optionalCar = carRepo.findById(car.id);
+        if (optionalCar.isEmpty()) {
+            return null;
+        }
+        Car carToUpdate = optionalCar.get();
+        logger.info(carToUpdate.transmission);
         carToUpdate.brand=car.brand;
         carToUpdate.model=car.model;
         carToUpdate.doors=car.doors;
@@ -55,11 +60,12 @@ public class CarService {
         carToUpdate.transmission=car.transmission;
         carToUpdate.chassis=car.chassis;
         carToUpdate.pricePerDay=car.pricePerDay;
-        return carRepo.save(carToUpdate);
+        logger.info(carToUpdate.model + carToUpdate.transmission);
+        Car updatedCar = carRepo.save(carToUpdate);
+        return updatedCar;
     }
 
     public void deleteCar(int id){
         carRepo.deleteById(id);
     }
-
 }
