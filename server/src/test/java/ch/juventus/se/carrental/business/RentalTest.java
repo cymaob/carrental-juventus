@@ -2,25 +2,23 @@ package ch.juventus.se.carrental.business;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RentalTest {
     private Car car;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private final LocalDateTime startDate = LocalDateTime.now();
+    private final LocalDateTime endDate = startDate.plusDays(7);
     private Rental rental;
+
 
     @BeforeEach
     public void createRental(){
         this.car = new Car("BMW", "3 Series", 4, 5, "Manual", "Sedan", 50.0);
-        this.startDate = LocalDate.now();
-        this.endDate = startDate.plusDays(7);
-
         rental = new Rental(car, startDate, endDate);
     }
+
 
     @Test
     public void testConstructor(){
@@ -30,30 +28,15 @@ class RentalTest {
     }
 
     @Test
-    void getId() {
+    void testSettersAndGetters() {
+        rental.setId(1);
+        assertEquals(1, rental.getId());
+
+        rental.setRentStartDate(startDate);
+        assertEquals(startDate, rental.getRentStartDate());
+
+        rental.setRentEndDate(endDate);
+        assertEquals(endDate, rental.getRentEndDate());
     }
 
-    @Test
-    void setId() {
-    }
-
-    @Test
-    void getRentStartDate() {
-    }
-
-    @Test
-    void setRentStartDate() {
-    }
-
-    @Test
-    void getRentEndDate() {
-    }
-
-    @Test
-    void setRentEndDate() {
-    }
-
-    @Test
-    void getCar() {
-    }
 }
