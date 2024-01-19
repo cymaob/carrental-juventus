@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit{
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['brand', 'model', 'doors', 'seats', 'transmission', 'chassis', 'pricePerDay', 'rent'];
   minDate = new Date();
-  endDate = new Date()
 
 
   dateRange = new FormGroup({
@@ -25,7 +24,7 @@ export class HomeComponent implements OnInit{
   });
 
 
-  form = this.formBuilder.group({
+    form = this.formBuilder.group({
     brand: [''],
     model: [''],
     doors: [''],
@@ -36,7 +35,6 @@ export class HomeComponent implements OnInit{
     minPrice: [''],
     maxPrice: [''],
   });
-
 
   constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
   }
