@@ -1,7 +1,23 @@
-#Carrenal System "FleetWise"
+# Carrenal System "FleetWise"
 
-###Database
-- The application needs and mySQL database with to tables for cars and rentals. Tables can be created with the following SQL Statements:
+## Technology
+The application uses java springboot as backend and angular material in frontend. Persistance layer is a mySQL database. Under "Database" you can find more information about creating the needed tables.
+
+## Component overview frontend
+<pre>
+└── src
+    ├── app
+        ├── admin-component
+        ├── edit-car-component
+        ├── header-component
+        ├── home-component
+        ├── new-car-component
+        ├── rent-component
+        └── app-component
+</pre>
+
+### Database
+- The application needs a mySQL database with two tables for cars and rentals. Tables can be created with the following SQL Statements:
 ```sql
 CREATE TABLE rental (
    id INT AUTO_INCREMENT,
